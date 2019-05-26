@@ -13,8 +13,7 @@ If you're doing a traditional ejabberd deploy using `make` and `rebar`, you'll n
 
 ## Backends and Example Configuration
 ### ZooKeeper 
-   * Only providing `backend` will use these default values for convenience.
-   * Watches for changes so that when 
+   * Only providing `zookeeper` as a `backend` defaults to the values below.
    * Current behavior is: if nothing is returned, create ZooKeeper node and add self.  Otherwise, join cluster, add self, and sweep previous nodes that are not responsive.
 ```
 ModAutoCluster:
