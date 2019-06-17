@@ -22,3 +22,8 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 mod_auto_cluster-*.tar
 
+# Ignore the configurations used by ejabberd
+ejabberd.yml
+
+# Mnesia
+Mnesia*

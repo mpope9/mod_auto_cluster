@@ -11,10 +11,17 @@ defmodule ModAutoCluster.MixProject do
     ]
   end
 
+  def application do
+    [
+      applications: [:logger, :ejabberd]
+    ]
+  end
+
   defp deps do
     [ 
       {:ejabberd, git: "https://github.com/processone/ejabberd.git", branch: "master"},
-      {:erlzk, "~> 0.6.4"}
+      {:erlzk, "~> 0.6.4"},
+      {:eetcd, git: "https://github.com/zhongwencool/eetcd", branch: "master"}
     ]
   end
 end
