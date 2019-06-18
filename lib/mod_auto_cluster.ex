@@ -12,9 +12,7 @@ defmodule ModAutoCluster do
   def start(host, opts) do
     info("Starting mod_auto_cluster")
 
-    backend = 
-      :gen_mod.get_opt(:backend, opts) 
-      |> String.to_atom
+    backend = :gen_mod.get_opt(:backend, opts) |> String.to_atom
 
     case backend do
       :zookeeper ->
