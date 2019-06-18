@@ -1,5 +1,6 @@
 defmodule ModAutoCluster.ZooKeeperBackend do
   alias :erlzk, as: ZooKeeper
+  alias ModAutoCluster.Helpers.Cluster, as: Cluster
   import Ejabberd.Logger
   import StatRecord
 
@@ -25,7 +26,7 @@ defmodule ModAutoCluster.ZooKeeperBackend do
     with {:ok, _stat}             <- ZooKeeper.exists(pid, znode),
          {:ok, {node_list, stat}} <- ZooKeeper.get_data(pid, znode)
     do 
-      new_node_list = ModAutoCluster.join_cluster(node_list)
+      new_node_list = Cluster.join_cluster(node_list)
       version       = stat(stat, :version)
       {:ok, _stat}  = ZooKeeper.set_data(pid, znode, new_node_list, version)
 

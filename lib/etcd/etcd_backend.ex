@@ -1,5 +1,6 @@
 defmodule ModAutoCluster.EtcdBackend do
   alias :eetcd_kv, as: Etcd
+  alias ModAutoCluster.Helpers.Cluster, as: Cluster
   import Ejabberd.Logger
   import EtcdRangeRequestRecord
   import EtcdRangeResponseRecord
@@ -39,7 +40,7 @@ defmodule ModAutoCluster.EtcdBackend do
           etcd_kvs      = etcd_range_response(range_response, :kvs)
           [key_value]   = etcd_kvs
           node_list     = etcd_key_value(key_value, :value)
-          new_node_list = ModAutoCluster.join_cluster(node_list) |> :erlang.binary_to_list
+          new_node_list = Cluster.join_cluster(node_list) |> :erlang.binary_to_list
           put_request   = etcd_put_request(key: key, value: new_node_list, ignore_value: true)
           {:ok, _}      = Etcd.put(put_request)
       end
